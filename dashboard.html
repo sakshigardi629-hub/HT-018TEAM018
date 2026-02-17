@@ -263,6 +263,40 @@ function checkFraud() {
 
     updateChart();
 }
+function simulateTransaction() {
+
+    let amount = Math.floor(Math.random() * 100000) + 1000;
+    let location = Math.random() > 0.5 ? "home" : "new";
+    let time = Math.random() > 0.5 ? "day" : "night";
+
+    let riskScore = 0;
+
+    if (amount > 50000) riskScore += 50;
+    if (location === "new") riskScore += 30;
+    if (time === "night") riskScore += 20;
+
+    let resultDiv = document.getElementById("result");
+
+    if (riskScore >= 70) {
+        resultDiv.innerHTML = "⚠️ Fraud Detected! Risk Score: " + riskScore;
+        resultDiv.style.color = "red";
+        fraudCount++;
+    } else {
+        resultDiv.innerHTML = "✅ Safe Transaction. Risk Score: " + riskScore;
+        resultDiv.style.color = "lightgreen";
+        safeCount++;
+    }
+
+    let table = document.getElementById("historyTable");
+    let row = table.insertRow();
+    row.insertCell(0).innerHTML = amount;
+    row.insertCell(1).innerHTML = location;
+    row.insertCell(2).innerHTML = time;
+    row.insertCell(3).innerHTML = riskScore;
+    row.insertCell(4).innerHTML = (riskScore >= 70) ? "Fraud" : "Safe";
+
+    updateChart();
+}
 
 let ctx = document.getElementById("chart").getContext("2d");
 
