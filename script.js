@@ -17,6 +17,7 @@ function checkFraud() {
     if (riskScore >= 70) {
         resultText = "⚠️ Fraud Detected! Risk Score: " + riskScore;
         fraudCount++;
+        alert("⚠️ Suspicious Transaction! Verification Required.");
     } else {
         resultText = "✅ Safe Transaction. Risk Score: " + riskScore;
         safeCount++;
