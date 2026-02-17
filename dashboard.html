@@ -27,19 +27,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    padding: 15px 30px;
     background: linear-gradient(90deg, #0f2027, #203a43);
     position: fixed;
-    width: 100%;
     top: 0;
+    left: 0;
+    right: 0;
     box-sizing: border-box;
 }
-
+.navbar div:last-child {
+    display: flex;
+    flex-wrap: wrap;
+}
 .navbar a {
     color: white;
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 15px;
     font-weight: 500;
+    white-space: nowrap;
 }
 
         .container {
@@ -135,7 +140,7 @@
     <div>🚨 FraudDetect</div>
     <div>
         <a href="home.html">Home</a>
-        <a href="login">Login</a>
+        <a href="login.html">Login</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="reports.html">Reports</a>
         <a href="about.html">About</a>
