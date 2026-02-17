@@ -47,12 +47,15 @@ let chart = new Chart(ctx, {
         }]
     },
     options: {
+        responsive: true,
+        maintainAspectRatio: false,
         animation: {
             animateScale: true,
             animateRotate: true
         }
     }
 });
+
 
 
 function updateChart() {

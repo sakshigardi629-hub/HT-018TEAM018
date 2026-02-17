@@ -16,7 +16,7 @@ body {
 
 
 .container {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(187, 59, 59, 0.15);
     backdrop-filter: blur(10px);
     padding: 25px;
     width: 400px;
@@ -30,6 +30,17 @@ body {
     transform: scale(1.05);
 }
 
+.chart-container {
+    width: 350px;
+    margin: 30px auto;
+}
+
+canvas {
+    max-width: 100%;
+}
+.chart-container {
+    height: 250px;
+}
 
 input, select {
     width: 90%;
