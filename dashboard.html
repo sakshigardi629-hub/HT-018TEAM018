@@ -1,52 +1,258 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Fraud Detection System</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Fraud Detection Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1e3c72);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: white;
+            text-align: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navbar */
+        .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: linear-gradient(90deg, #0f2027, #203a43);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    box-sizing: border-box;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+        .container {
+            margin-top: 100px;
+            padding: 20px;
+        }
+
+        .form-box {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            width: 400px;
+            margin: auto;
+            border-radius: 15px;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 8px;
+            margin: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #ff4b2b;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Chart box */
+        .chart-box {
+            width: 300px;
+            height: 300px;
+            margin: 30px auto;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Table styling */
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+            background: rgba(255,255,255,0.9);
+            color: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #ff4b2b;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 10px;
+            background: rgba(0,0,0,0.4);
+        }
+    </style>
 </head>
+
 <body>
 
-<h2>🚨 Fraud Detection System</h2>
-
-<div class="container">
-    <form onsubmit="checkFraud(); return false;">
-        
-        <input type="number" id="amount" placeholder="Transaction Amount (₹)" required>
-        
-        <select id="location" required>
-            <option value="home">Home Location</option>
-            <option value="new">New Location</option>
-        </select>
-
-        <select id="time" required>
-            <option value="day">Day Time</option>
-            <option value="night">Late Night</option>
-        </select>
-
-        <button type="submit">Check Transaction</button>
-
-    </form>
-
-    <div class="result" id="result"></div>
+<!-- Navbar -->
+<div class="navbar">
+    <div>🚨 FraudDetect</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="reports.html">Reports</a>
+        <a href="about.html">About</a>
+        <a href="index.html">Logout</a>
+    </div>
 </div>
 
-<h3>Transaction History</h3>
-<table border="1" id="historyTable">
-    <tr>
-        <th>Amount</th>
-        <th>Location</th>
-        <th>Time</th>
-        <th>Risk Score</th>
-        <th>Status</th>
-    </tr>
-</table>
-<button onclick="location.reload()">Clear</button>
+<div class="container">
 
-<script src="script.js"></script>
+    <h2>🚨 Fraud Detection Dashboard</h2>
+
+    <div class="form-box">
+        <form onsubmit="checkFraud(); return false;">
+            <input type="number" id="amount" placeholder="Transaction Amount (₹)" required>
+
+            <select id="location" required>
+                <option value="home">Home Location</option>
+                <option value="new">New Location</option>
+            </select>
+
+            <select id="time" required>
+                <option value="day">Day Time</option>
+                <option value="night">Late Night</option>
+            </select>
+
+            <button type="submit">Check Transaction</button>
+        </form>
+
+        <div id="result" style="margin-top:10px; font-weight:bold;"></div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="chart-box">
+        <canvas id="chart"></canvas>
+    </div>
+
+    <h3>Transaction History</h3>
+
+    <table border="1" id="historyTable">
+        <tr>
+            <th>Amount</th>
+            <th>Location</th>
+            <th>Time</th>
+            <th>Risk Score</th>
+            <th>Status</th>
+        </tr>
+    </table>
+
+    <br>
+    <button onclick="location.reload()">Clear</button>
+
+</div>
+
 <footer>
-    <p>Developed by TEAM018 | Fraud Detection System</p>
+    Developed by TEAM018 | Fraud Detection System
 </footer>
+
+<script>
+let fraudCount = 0;
+let safeCount = 0;
+
+function checkFraud() {
+
+    let amount = document.getElementById("amount").value;
+    let location = document.getElementById("location").value;
+    let time = document.getElementById("time").value;
+
+    let riskScore = 0;
+
+    if (amount > 50000) riskScore += 50;
+    if (location === "new") riskScore += 30;
+    if (time === "night") riskScore += 20;
+
+    let resultDiv = document.getElementById("result");
+
+    if (riskScore >= 70) {
+        resultDiv.innerHTML = "⚠️ Fraud Detected! Risk Score: " + riskScore;
+        resultDiv.style.color = "red";
+        fraudCount++;
+    } else {
+        resultDiv.innerHTML = "✅ Safe Transaction. Risk Score: " + riskScore;
+        resultDiv.style.color = "lightgreen";
+        safeCount++;
+    }
+
+    let table = document.getElementById("historyTable");
+    let row = table.insertRow();
+    row.insertCell(0).innerHTML = amount;
+    row.insertCell(1).innerHTML = location;
+    row.insertCell(2).innerHTML = time;
+    row.insertCell(3).innerHTML = riskScore;
+    row.insertCell(4).innerHTML = (riskScore >= 70) ? "Fraud" : "Safe";
+
+    updateChart();
+}
+
+let ctx = document.getElementById("chart").getContext("2d");
+
+let chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+        labels: ["Safe", "Fraud"],
+        datasets: [{
+            data: [safeCount, fraudCount],
+            backgroundColor: ["#00ff99", "#ff4b2b"]
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+function updateChart() {
+    chart.data.datasets[0].data = [safeCount, fraudCount];
+    chart.update();
+}
+</script>
 
 </body>
 </html>
