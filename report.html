@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Reports</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1e3c72);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: white;
+            text-align: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: #ff4b2b;
+        }
+
+        .container {
+            margin-top: 120px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            width: 220px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .number {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 10px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div>🚨 FraudDetect</div>
+    <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="reports.html">Reports</a>
+        <a href="about.html">About</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <h1>📊 Fraud Analytics Report</h1>
+
+    <div class="card-container">
+
+        <div class="card">
+            Total Transactions
+            <div class="number" id="total">0</div>
+        </div>
+
+        <div class="card">
+            Fraud Transactions
+            <div class="number" id="fraud">0</div>
+        </div>
+
+        <div class="card">
+            Fraud Percentage
+            <div class="number" id="percentage">0%</div>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    Developed by TEAM018 | Fraud Detection System
+</footer>
+
+<script>
+/* Dummy Data (Demo Purpose) */
+let totalTransactions = 25;
+let fraudTransactions = 7;
+
+let fraudPercent = ((fraudTransactions / totalTransactions) * 100).toFixed(2);
+
+document.getElementById("total").innerText = totalTransactions;
+document.getElementById("fraud").innerText = fraudTransactions;
+document.getElementById("percentage").innerText = fraudPercent + "%";
+</script>
+
+</body>
+</html>
