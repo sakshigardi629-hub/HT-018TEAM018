@@ -21,6 +21,14 @@ function checkFraud() {
         resultText = "✅ Safe Transaction. Risk Score: " + riskScore;
         safeCount++;
     }
+let table = document.getElementById("historyTable");
+let row = table.insertRow();
+
+row.insertCell(0).innerHTML = amount;
+row.insertCell(1).innerHTML = location;
+row.insertCell(2).innerHTML = time;
+row.insertCell(3).innerHTML = riskScore;
+row.insertCell(4).innerHTML = (riskScore >= 70) ? "Fraud" : "Safe";
 
     document.getElementById("result").innerHTML = resultText;
     updateChart();
