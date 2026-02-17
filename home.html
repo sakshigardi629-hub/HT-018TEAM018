@@ -6,20 +6,20 @@
 
     <style>
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1e3c72);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-            color: white;
-            text-align: center;
-        }
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('image.png') no-repeat center center fixed;
+    background-size: cover;
+    animation: zoomBg 20s infinite alternate;
+    color: white;
+    text-align: center;
+}
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+@keyframes zoomBg {
+    from { background-size: 100%; }
+    to { background-size: 110%; }
+}
+
 
         /* NAVBAR */
         .navbar {
