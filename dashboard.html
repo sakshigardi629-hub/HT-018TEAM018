@@ -149,7 +149,17 @@
             padding: 10px;
             opacity: 0.8;
         }
-    </style>
+   .sim-btn {
+       margin-top: 20px;
+       padding: 12px 25px;
+       border-radius: 30px;
+       border: none;
+       font-size: 16px;
+       background: linear-gradient(45deg,#ff416c,#ff4b2b);
+       color: white;
+       cursor: pointer;
+   }
+</style>
 </head>
 
 <body>
@@ -191,6 +201,8 @@
     </div>
 
     <!-- Chart -->
+     <button onclick="simulateTransaction()">Simulate Transactions</button>
+
     <div class="chart-box">
         <canvas id="chart"></canvas>
     </div>
