@@ -10,25 +10,25 @@
 <h2>🚨 Fraud Detection System</h2>
 
 <div class="container">
-    <input type="number" id="amount" placeholder="Transaction Amount (₹)">
-    
-    <select id="location">
-        <option value="home">Home Location</option>
-        <option value="new">New Location</option>
-    </select>
+    <form onsubmit="checkFraud(); return false;">
+        
+        <input type="number" id="amount" placeholder="Transaction Amount (₹)" required>
+        
+        <select id="location" required>
+            <option value="home">Home Location</option>
+            <option value="new">New Location</option>
+        </select>
 
-    <select id="time">
-        <option value="day">Day Time</option>
-        <option value="night">Late Night</option>
-    </select>
+        <select id="time" required>
+            <option value="day">Day Time</option>
+            <option value="night">Late Night</option>
+        </select>
 
-    <button onclick="checkFraud()">Check Transaction</button>
+        <button type="submit">Check Transaction</button>
+
+    </form>
 
     <div class="result" id="result"></div>
-</div>
-
-<div class="chart-container">
-    <canvas id="chart"></canvas>
 </div>
 
 <h3>Transaction History</h3>
@@ -44,6 +44,9 @@
 <button onclick="location.reload()">Clear</button>
 
 <script src="script.js"></script>
+<footer>
+    <p>Developed by TEAM018 | Fraud Detection System</p>
+</footer>
 
 </body>
 </html>
