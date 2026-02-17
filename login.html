@@ -162,6 +162,10 @@
     <a href="home.html" class="back">⬅ Back to Home</a>
 </div>
 <script>
+    if(localStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "login.html";
+}
+
 function login() {
     let email = document.getElementById("email").value;
     let pass = document.getElementById("password").value;
