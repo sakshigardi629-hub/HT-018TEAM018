@@ -12,6 +12,7 @@
             background-size: 400% 400%;
             animation: gradientBG 10s ease infinite;
             color: white;
+            text-align: center;
         }
 
         @keyframes gradientBG {
@@ -31,18 +32,48 @@
             position: fixed;
             width: 100%;
             top: 0;
+            z-index: 1000;
         }
 
         .logo {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
+            animation: glowLogo 2s infinite alternate;
+        }
+        @keyframes glowLogo{
+            from{text-shadow: 0 0 5px #00f2ff;}
+            to{text-shadow: 0 0 20px #ff00c8}
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
         }
 
-        .nav-links a {
-            color: white;
+        .nav-links li{
+            display: inline;
+        }
+        .nav-links a{
             text-decoration: none;
-            margin: 0 15px;
+            color: white;
+            font-weight: 500;
             transition: 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: #ff4b2b;
+            left: 0;
+            bottom: -5px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
@@ -62,8 +93,8 @@
         }
 
         h1 {
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 45px;
+            margin-bottom: 10px;
             animation: glow 2s infinite alternate;
         }
 
@@ -71,75 +102,96 @@
             from { text-shadow: 0 0 10px #00f2ff; }
             to { text-shadow: 0 0 25px #ff00c8; }
         }
-
         p {
-            max-width: 700px;
             font-size: 18px;
-            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .features{
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .card {
+            padding: 20px;
+            width: 180px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
         }
 
-        .team {
-            margin-top: 20px;
-            font-size: 16px;
-            opacity: 0.9;
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
         button {
-            margin-top: 25px;
             padding: 12px 30px;
             border-radius: 30px;
             border: none;
-            background: #ff4b2b;
-            color: white;
             font-size: 16px;
+            background: linear-gradient(45deg,#ff416c,#ff4b2b);
+            color: white;
             cursor: pointer;
             transition: 0.3s;
         }
 
         button:hover {
             transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        @media(max-width:768px){
-            .navbar {
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        @media(max-width: 768px) {
+            .features {
                 flex-direction: column;
             }
         }
     </style>
 </head>
-
 <body>
-
     <!-- 🔹 NAVBAR -->
-    <div class="navbar">
+    <nav class="navbar">
         <div class="logo">🚨 FraudDetect</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="login.html">Login</a>
-            <a href="about.html">About</a>
-        </div>
-    </div>
-
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="reports.html">Reports</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
     <!-- 🔹 INTRO SECTION -->
     <div class="container">
         <h1>Fraud Detection System</h1>
 
         <p>
-            With the rapid increase in digital payments and online banking, 
-            financial fraud is growing significantly. Our system analyzes 
-            transaction details in real-time and assigns a risk score 
-            to detect suspicious activities and prevent financial loss.
+            Real-Time Transaction Monitoring & Risk Intelligence Platform
         </p>
-
+        <nav class="navbar">
+        <div class="logo">🚨 FraudDetect</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="reports.html">Reports</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
         <a href="login.html">
             <button>Proceed to Login</button>
-        </a>
-
-        <div class="team">
-            <p><b>Team Name:</b> TEAM018</p>
-            <p>Sakshi Gardi | Anushka Apsingekar</p>
-        </div>
+        </a>  
     </div>
-
+<footer>
+        Developed by TEAM018 | Sakshi & Anushka
+    </footer>
 </body>
 </html>
