@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up - Fraud Detection System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1e3c72);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .signup-box {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            width: 350px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(45deg,#ff416c,#ff4b2b);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #ff4b2b;
+        }
+
+        .link {
+            margin-top: 15px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .link:hover {
+            color: #ff4b2b;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="signup-box">
+    <h2>📝 Create Account</h2>
+
+    <input type="text" id="fullname" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Create Password" required>
+
+    <button onclick="signup()">Sign Up</button>
+
+    <div id="msg" class="message"></div>
+
+    <a href="login.html" class="link">
+        Already have an account? Login
+    </a>
+</div>
+
+<script>
+function signup() {
+
+    let name = document.getElementById("fullname").value;
+    let email = document.getElementById("email").value;
+    let pass = document.getElementById("password").value;
+
+    if(name === "" || email === "" || pass === "") {
+        document.getElementById("msg").innerHTML = "Please fill all fields!";
+        return;
+    }
+
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userPass", pass);
+
+    document.getElementById("msg").style.color = "lightgreen";
+    document.getElementById("msg").innerHTML = "Account Created Successfully!";
+
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 1500);
+}
+</script>
+
+</body>
+</html>
