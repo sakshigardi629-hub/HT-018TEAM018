@@ -171,13 +171,19 @@
 
 <script>
 function login() {
-    let user = document.getElementById("username").value;
+
+    let email = document.getElementById("email").value;
     let pass = document.getElementById("password").value;
 
-    if(user === "admin" && pass === "1234") {
+    let savedEmail = localStorage.getItem("userEmail");
+    let savedPass = localStorage.getItem("userPass");
+
+    if(email === savedEmail && pass === savedPass) {
         window.location.href = "dashboard.html";
-    } else {
-        document.getElementById("errorMsg").innerHTML = "Invalid Username or Password!";
+    } 
+    else {
+        document.getElementById("errorMsg").innerHTML = 
+        "Invalid Email or Password!";
     }
 }
 </script>
