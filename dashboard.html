@@ -22,34 +22,51 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Navbar */
+        /* NAVBAR (Same as Home) */
         .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background: linear-gradient(90deg, #0f2027, #203a43);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    box-sizing: border-box;
-}
-.navbar div:last-child {
-    display: flex;
-    flex-wrap: wrap;
-}
-.navbar a {
-    color: white;
-    text-decoration: none;
-    margin-left: 15px;
-    font-weight: 500;
-    white-space: nowrap;
-}
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff4b2b;
+        }
+
+        /* MAIN CONTENT */
         .container {
-            margin-top: 100px;
+            margin-top: 120px;
             padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
         }
 
         .form-box {
@@ -71,7 +88,7 @@
 
         button {
             padding: 10px 20px;
-            background: #ff4b2b;
+            background: linear-gradient(45deg,#ff416c,#ff4b2b);
             border: none;
             color: white;
             cursor: pointer;
@@ -83,11 +100,11 @@
             transform: scale(1.05);
         }
 
-        /* Chart box */
+        /* Chart */
         .chart-box {
             width: 300px;
             height: 300px;
-            margin: 30px auto;
+            margin: 40px auto;
         }
 
         canvas {
@@ -95,7 +112,7 @@
             height: 100% !important;
         }
 
-        /* Table styling */
+        /* Table */
         table {
             margin: 20px auto;
             border-collapse: collapse;
@@ -126,30 +143,30 @@
         }
 
         footer {
-            margin-top: 30px;
+            margin-top: 40px;
             padding: 10px;
-            background: rgba(0,0,0,0.4);
+            opacity: 0.8;
         }
     </style>
 </head>
 
 <body>
 
-<!-- Navbar -->
-<div class="navbar">
-    <div>🚨 FraudDetect</div>
-    <div>
-        <a href="home.html">Home</a>
-        <a href="login.html">Login</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="reports.html">Reports</a>
-        <a href="about.html">About</a>
-    </div>
-</div>
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">🚨 FraudDetect</div>
+    <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+</nav>
 
 <div class="container">
 
-    <h2>🚨 Fraud Detection Dashboard</h2>
+    <h1>🚨 Fraud Detection Dashboard</h1>
 
     <div class="form-box">
         <form onsubmit="checkFraud(); return false;">
@@ -171,14 +188,15 @@
         <div id="result" style="margin-top:10px; font-weight:bold;"></div>
     </div>
 
-    <!-- Pie Chart -->
+    <!-- Chart -->
     <div class="chart-box">
         <canvas id="chart"></canvas>
     </div>
 
+    <!-- Table -->
     <h3>Transaction History</h3>
 
-    <table border="1" id="historyTable">
+    <table id="historyTable">
         <tr>
             <th>Amount</th>
             <th>Location</th>
@@ -188,13 +206,10 @@
         </tr>
     </table>
 
-    <br>
-    <button onclick="location.reload()">Clear</button>
-
 </div>
 
 <footer>
-    Developed by TEAM018 | Fraud Detection System
+    Developed by TEAM018 | Sakshi & Anushka
 </footer>
 
 <script>
@@ -202,7 +217,6 @@ let fraudCount = 0;
 let safeCount = 0;
 
 function checkFraud() {
-
     let amount = document.getElementById("amount").value;
     let location = document.getElementById("location").value;
     let time = document.getElementById("time").value;
