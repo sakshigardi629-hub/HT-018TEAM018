@@ -277,6 +277,20 @@ document.body.classList.add("alert-flash");
 setTimeout(() => {
     document.body.classList.remove("alert-flash");
 }, 3000);
+let autoMode = false;
+let interval;
+
+function toggleAutoMode() {
+    if (!autoMode) {
+        interval = setInterval(simulateTransaction, 2000);
+        autoMode = true;
+        alert("Auto Simulation Started");
+    } else {
+        clearInterval(interval);
+        autoMode = false;
+        alert("Auto Simulation Stopped");
+    }
+}
 
 function simulateTransaction() {
 
