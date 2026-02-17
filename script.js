@@ -42,10 +42,18 @@ let chart = new Chart(ctx, {
     data: {
         labels: ['Safe', 'Fraud'],
         datasets: [{
-            data: [safeCount, fraudCount]
+            data: [safeCount, fraudCount],
+            backgroundColor: ['#00ff99', '#ff4b2b']
         }]
+    },
+    options: {
+        animation: {
+            animateScale: true,
+            animateRotate: true
+        }
     }
 });
+
 
 function updateChart() {
     chart.data.datasets[0].data = [safeCount, fraudCount];
