@@ -159,6 +159,15 @@
        color: white;
        cursor: pointer;
    }
+   .alert-flash {
+    animation: flashRed 0.5s alternate 6;
+}
+
+@keyframes flashRed {
+    from { background-color: #0f2027; }
+    to { background-color: #5a0000; }
+}
+
 </style>
 </head>
 
@@ -263,6 +272,12 @@ function checkFraud() {
 
     updateChart();
 }
+document.body.classList.add("alert-flash");
+
+setTimeout(() => {
+    document.body.classList.remove("alert-flash");
+}, 3000);
+
 function simulateTransaction() {
 
     let amount = Math.floor(Math.random() * 100000) + 1000;
