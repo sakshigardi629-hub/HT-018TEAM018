@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Detection System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h2>🚨 Fraud Detection System</h2>
+
+<div class="container">
+    <input type="number" id="amount" placeholder="Transaction Amount (₹)">
+    
+    <select id="location">
+        <option value="home">Home Location</option>
+        <option value="new">New Location</option>
+    </select>
+
+    <select id="time">
+        <option value="day">Day Time</option>
+        <option value="night">Late Night</option>
+    </select>
+
+    <button onclick="checkFraud()">Check Transaction</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<canvas id="chart" width="400" height="200"></canvas>
+
+<script src="script.js"></script>
+
+</body>
+</html>
