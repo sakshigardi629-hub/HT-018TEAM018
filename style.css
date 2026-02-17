@@ -1,22 +1,35 @@
 body {
-    font-family: Arial;
-    background: #f4f6f9;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(-45deg, #1e3c72, #2a5298, #0f2027, #203a43);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
     text-align: center;
     padding: 20px;
-    background: linear-gradient(to right, #1e3c72, #2a5298);
     color: white;
-
 }
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 
 .container {
-    background: white;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 25px;
     width: 400px;
     margin: auto;
-    border-radius: 10px;
-    box-shadow: 0 0 10px gray;
-    color: black;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
 }
+
+.container:hover {
+    transform: scale(1.05);
+}
+
 
 input, select {
     width: 90%;
@@ -26,11 +39,19 @@ input, select {
 
 button {
     padding: 10px 20px;
-    background: #007bff;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
     color: white;
     border: none;
+    border-radius: 25px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
 
 .result {
     margin-top: 15px;
