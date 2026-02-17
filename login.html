@@ -76,6 +76,65 @@
         .link:hover {
             color: #ff4b2b;
         }
+        .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+}
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            animation: glowLogo 2s infinite alternate;
+        }
+
+        @keyframes glowLogo {
+            from { text-shadow: 0 0 5px #00f2ff; }
+            to { text-shadow: 0 0 20px #ff00c8; }
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: #ff4b2b;
+            left: 0;
+            bottom: -5px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: #ff4b2b;
+        }
     </style>
 </head>
 
