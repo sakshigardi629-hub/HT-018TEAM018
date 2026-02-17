@@ -169,9 +169,9 @@ function login() {
     let savedEmail = localStorage.getItem("userEmail");
     let savedPass = localStorage.getItem("userPass");
 
-    if(email === savedEmail && pass === savedPass) {
-        window.location.href = "dashboard.html";
-    } 
+    if(email === savedEmail && pass === savedPass)
+    localStorage.setItem("loggedIn", "true");
+  window.location.href = "dashboard.html";
     else {
         document.getElementById("errorMsg").innerHTML = 
         "Invalid Email or Password!";
